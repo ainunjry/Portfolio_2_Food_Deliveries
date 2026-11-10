@@ -54,3 +54,40 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 36.	cancellation_reason : A reason for cancelled order
 37.	customer_rating : Rating for customers 
 
+#### Data Sources
+
+
+#### Tools
+
+- Google-Colab
+  [Download here :](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Delivery.ipynb)
+- XAMPP PhpMyAdmin - Data analysis
+- Tableau - Visualization
+
+#### Business Questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
