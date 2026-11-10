@@ -54,6 +54,9 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 36.	cancellation_reason : A reason for cancelled order
 37.	customer_rating : Rating for customers 
 
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
+
+
 #### Data Sources
 
 
@@ -72,7 +75,7 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 5. How does delivery performance relate to customer experience ?
 
 ## Data Cleaning
-####** Python Pandas**
+####**Python Pandas
 
 
 
