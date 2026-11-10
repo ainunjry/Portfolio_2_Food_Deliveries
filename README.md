@@ -1,6 +1,12 @@
 # Late Versus On-Time Food Deliveries Analysis
 
 ## Content
+[Business Understanding]
+[About The Dataset]
+[Data Sources](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-sources)
+[Tools](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#tools)
+[Business Questions](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-questions)
+[Data Cleaning](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-cleaning)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
