@@ -60,14 +60,19 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 #### Tools
 
 - Google-Colab
-  [Download here :](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Delivery.ipynb)
+  [Download here ](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Delivery.ipynb)
 - XAMPP PhpMyAdmin - Data analysis
 - Tableau - Visualization
 
 #### Business Questions
+1. What drives actual delivery time ?
+2. What drives late deliveries ?
+3. How accurate are delivery estimates ?
+4. Which ones are the operational bottlenecks ?
+5. How does delivery performance relate to customer experience ?
 
-
-
+## Data Cleaning
+####** Python Pandas**
 
 
 
