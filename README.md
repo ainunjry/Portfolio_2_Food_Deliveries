@@ -31,7 +31,7 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 7.	order_hour : Hour of Order
 8.	day_of_week : Days in a week
 9.	is_weekend : Binary column , Indicating the days are (0 for weekdays , 1 for weekend)
-10.	city : CITY A-D
+10.	city : CITY A,B,C and D
 11.	delivery_area : CITY A-D WITH AREA 1-10
 12.	customer_age : Customer age
 13.	customer_type : Consists of 3 types: new, regular, and premium
@@ -83,6 +83,19 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 ## Data Cleaning
 **Python Pandas**
 
+- Installing pandas and matplotlib
+''''python
+!pip install pandas
+!pip install matplotlib
+''''
+
+- Importing libraries
+  ''''python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+''''
 
 
 
