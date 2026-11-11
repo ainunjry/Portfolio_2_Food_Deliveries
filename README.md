@@ -7,6 +7,7 @@
 - [Tools](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#tools)
 - [Business Questions](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-questions)
 - [Data Cleaning](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-cleaning)
+- [EDA](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#exploratory-data-analysis)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
@@ -209,11 +210,63 @@ Output:
 - the number of rows column customer_rating = 0 are : 868
 
 ***Interpretation :***
-The missing values of column:
-'tip_amount': replaced by minimum value of column 0.0.
-'actual_delivery_time_minutes' : replaced by 0.0, due to cancelled order status.
-'late_delivery : replaced by " Undefined " due to cancelled order status.
-'customer_rating' : replaced by 0.0 due to cancelled order status.
+- The missing values of column:
+- 'tip_amount': replaced by minimum value of column 0.0.
+- 'actual_delivery_time_minutes' : replaced by 0.0, due to cancelled order status.
+- 'late_delivery : replaced by " Undefined " due to cancelled order status.
+- 'customer_rating' : replaced by 0.0 due to cancelled order status.
+
+- Dropping the 'order_timestamp' column & Transforming datetime column order_date into Y-m-d
+````python
+dv1.drop(columns= 'order_timestamp', inplace=True)
+dv1['new_order_date'] = pd.to_datetime(dv1['order_date']).dt.strftime('%Y-%m-%d')
+print(dv1['new_order_date'].dtype)
+dv1['new_order_date'] = pd.to_datetime(dv1['new_order_date'])
+print(dv1['new_order_date'].dtype)
+dv1['new_order_date'] = dv1['new_order_date'].dt.to_period('D')
+````
+
+- Transformimg column 'actual_delivery_time_minutes' into interger
+````python
+dv1['actual_delivery_time_minutes'] = dv1['actual_delivery_time_minutes'].astype('int64')
+````
+
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
+
+## Exploratory Data Analysis
+
+#### Identifying distribution of column : customer_age, distance_km, actual_delivery_time_minutes
+#### Creating function to identify: mean, median, skewness and histogram distribution.
+
+````python
+def statistic (a,b):
+  mean = np.round(a[b].mean(),2)
+  median = np.round(a[b].median(),2)
+  skewness = a[b].skew()
+
+  print(f"the mean of  {b} column : {mean}")
+  print(f"the median of {b} column: {median}")
+  print(f"the skewness of{b} column : {skewness}")
+
+statistic(dv1,'customer_age')
+````
+Output :
+- the mean of  customer_age column : 27.69
+- the median of customer_age column: 27.0
+- the skewness ofcustomer_age column : 0.509064156984098
+
+****Creating KDE Chart of customer_age****
+````python
+plt.figure(figsize = (4,4))
+sns.kdeplot(data=dv1, x='customer_age', fill=False, color='brown')
+plt.title("KDE distribution of customer_age")
+plt.xlabel("Age")
+plt.show()
+````
+
+
+
+
 
 
 
