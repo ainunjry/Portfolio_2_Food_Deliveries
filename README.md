@@ -380,7 +380,7 @@ Output:
 - The number of outliers of actual_delivery_time_minutes: 97
 
 ***Interpretation***
-The outliers of actual_delivery_time_minutes and distance_km columns were unecessarily aborted,
+- The outliers of actual_delivery_time_minutes and distance_km columns were unecessarily aborted,
 the plausible external factors were associated with these outliers
 
 
@@ -432,8 +432,26 @@ plt.ylim(0,)
 
 ![The correlation 2-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/sns_regplot.png)
 
+identifying the correlation between partner experienced-months and actual delivery time
+````python
+partner = dv1[['delivery_pa rtner_experience_months', 'actual_delivery_time_minutes']]
+partner.corr()
+````
+![Table correlation between two-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/corr_part_exp.png)
+
+````python
+pearson_coef,p_value = stats.pearsonr(dv1['delivery_partner_experience_months'],dv1['actual_delivery_time_minutes'])
+print(f'The pearson_coef: {pearson_coef} \n the p_value: {p_value} ')
+````
+Output:
+- The pearson_coef: -0.0011263920488654134 
+- the p_value: 0.8011471897507926
 
 
+***Interpretation***
+- Since the p_value > 0.1, the correlation between partner experienced-months
+and actual delivery time has no evidence that it's significant, the pearson_coef
+measures the two variables most likely do not affect each other.
 
 
 
