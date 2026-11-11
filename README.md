@@ -120,6 +120,8 @@ dv.duplicated().sum()
 ````
    output: np.int64(0)
 
+****Missing Values****
+
 - Creating function to identify missing values
 ````python
 ef missing (a,b):
@@ -149,6 +151,69 @@ ef missing (a,b):
 dv1 = dv.copy()
 dv1.head(3)
 ````
+
+
+- Identifying minimum value column 'tip_amount', the number of rows that contain NOT min_value and min_value
+````python
+dv1['tip_amount'].min()
+(dv1['tip_amount'] != 0.0).sum()
+(dv1['tip_amount'] == 0.0).sum()
+````
+
+- Replacing missing values & column tip_amount
+````python
+dv1['tip_amount'].replace(np.nan , dv1['tip_amount'].min(), inplace = True)
+````
+
+- The total rows after replacing are 28289 + 868 (missing value) & Identifying the number of rows that contain > 0 value
+````python
+(dv1['tip_amount'] == 0.0).sum()
+(dv1['actual_delivery_time_minutes'] > 0).sum()
+````
+
+- Replacing missing values column actual_delivery_time_minutes
+````python
+dv1['actual_delivery_time_minutes']=dv1['actual_delivery_time_minutes'].fillna(0.0)
+dv1['actual_delivery_time_minutes'].isnull().sum()
+(dv1['actual_delivery_time_minutes'] == 0.0).sum()
+````
+
+- Column : late_delivery
+````python
+dv1['late_delivery'] = dv1['late_delivery'].fillna('Cancelled order')
+dv1['late_delivery'].isnull().sum()
+(dv1['late_delivery'] == 'Cancelled order') .sum()
+````
+
+- Column : customer_rating & creating function to find out missing valued rows after cleaning
+````python
+dv1['customer_rating'] = dv1['customer_rating'].fillna(0.0)
+dv1['customer_rating'].isnull().sum()
+(dv1['customer_rating'] == 0.0).sum()
+
+def rows (a,b):
+numbers = (a[b] == 0).sum()
+print(f'the number of rows column {b} = 0 are : {numbers}')
+
+rows (dv1,'tip_amount')
+rows (dv1,'actual_delivery_time_minutes')
+rows (dv1,'late_delivery')
+rows (dv1,'customer_rating')
+````
+
+Output:
+
+- the number of rows column tip_amount = 0 are : 29157
+- the number of rows column actual_delivery_time_minutes = 0 are : 868
+- the number of rows column late_delivery = 0 are : 31164
+- the number of rows column customer_rating = 0 are : 868
+
+***Interpretation :***
+The missing values of column:
+'tip_amount': replaced by minimum value of column 0.0.
+'actual_delivery_time_minutes' : replaced by 0.0, due to cancelled order status.
+'late_delivery : replaced by " Undefined " due to cancelled order status.
+'customer_rating' : replaced by 0.0 due to cancelled order status.
 
 
 
