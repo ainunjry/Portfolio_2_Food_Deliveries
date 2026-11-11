@@ -379,13 +379,58 @@ Output:
 - Upper = 105.0
 - The number of outliers of actual_delivery_time_minutes: 97
 
+***Interpretation***
+The outliers of actual_delivery_time_minutes and distance_km columns were unecessarily aborted,
+the plausible external factors were associated with these outliers
 
 
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 
+****Correlation two-column or multi-column****
 
+Identifying correlation between 2 columns
 
+````python
+x = dv1[['customer_age','order_hour','distance_km', 'actual_delivery_time_minutes', 'tip_amount', 'restaurant_rating','customer_rating']]
+x.corr()
+````
+![Table correlation of multi-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/corr.png)
 
+***Interpretation***
+- It appeared correlation between column :
+    distance_km & actual_delivery_time_minutes
+    has postive linear, pearson correlation needed to measure the linear dependance
+    between 2 variables.
+
+Importing library Scipy
+````python
+from scipy import stats
+````
+
+Identifying the correlation strength by pearson
+````python
+pearson_coef,p_value = stats.pearsonr(dv1['distance_km'],dv1['actual_delivery_time_minutes'])
+print(f'Pearson_coef: {pearson_coef}')
+print(f'P_value : {p_value}')
+````
+Output:
+- Pearson_coef: 0.7232588550246868
+- P_value : 0.0
+
+***Interpretation***
+- The distance_km and actual_delivery_time_minutes factors
+   were linear relationship moderately strong, since the p_value (0.0) measured
+    significant correlation.
+
+Visualizing the correlation by regplot
+````python
+plt.figure(figsize=(4,4))
+sns.regplot(data= dv1, x='distance_km', y= 'actual_delivery_time_minutes', color='green')
+plt.ylim(0,)
+````
+
+![The correlation 2-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/sns_regplot.png)
 
 
 
