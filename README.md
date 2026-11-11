@@ -97,6 +97,61 @@ import seaborn as sns
 import numpy as np
 ````
 
+- Creating variable to read the dataset
+- Transforming the dataset into DataFrame
+- 
+````python
+dv = pd.read_excel('RESTAURANT.xlsx')
+dv = pd.DataFrame(dv)
+print(type(dv))
+dv.head()
+````
+
+- Identifying the number of rows, datatype of each column and dataset statistic
+````python
+dv.info()
+dv.shape
+dv.describe(include='all')
+````
+
+- Identifying duplicated rows
+````python
+dv.duplicated().sum()
+````
+   output: np.int64(0)
+
+- Creating function to identify missing values
+````python
+ef missing (a,b):
+  hasil = a[b].isnull().sum()
+  print(f'The number of missing values column {b} : {hasil}')
+````
+- Using the function
+````python
+  missing(dv,'tip_amount')
+  missing(dv,'subtotal')
+  missing(dv,'actual_delivery_time_minutes')
+  missing(dv,'late_delivery')
+  missing(dv,'customer_rating')
+  missing(dv,'restaurant_rating')
+````
+  Output: 
+  - The number of missing values column tip_amount : 868
+  - The number of missing values column subtotal : 0
+  - The number of missing values column actual_delivery_time_minutes : 868
+  - The number of missing values column late_delivery : 868
+  - The number of missing values column customer_rating : 868
+  - The number of missing values column restaurant_rating : 0
+
+
+- Creating DataFrame copy
+````python
+dv1 = dv.copy()
+dv1.head(3)
+````
+
+
+
 
 
 
