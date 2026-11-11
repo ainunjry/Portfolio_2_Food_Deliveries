@@ -263,6 +263,125 @@ plt.title("KDE distribution of customer_age")
 plt.xlabel("Age")
 plt.show()
 ````
+![KDE Plot customer_age](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/KDE_AGE.png)
+
+***Interpretation***
+- The 3 peaks indicates 3 subs-population in dataset, that range
+    18 - 28 years, 29 - 39 years, and over 40 years.
+    the median and mean were similar, the gen Z population contributed
+    the most delivery-order-customers.
+
+****To generate statistic distance_km & KDE Plot****
+````python
+statistic(dv1,'distance_km')
+````
+Output:
+- the mean of  distance_km column : 4.73
+- the median of distance_km column: 4.1
+- the skewness ofdistance_km column : 1.7050089288964454
+
+````python
+plt.figure(figsize=(4,4))
+sns.kdeplot(data=dv1, x='distance_km', fill=True, color='brown')
+plt.title('KDE distribution of Distance in KM')
+plt.xlabel('KM')
+plt.show()
+````
+
+![KDE Plot distance_km](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/KDE_distance.png)
+
+
+***Interpretation***
+- The distance distribution is strongly right skewed,
+   It has small number of high values to pull the Mean upward.
+   Furthermore,  the Median provides  a more representative view of a typical distance_km.
+
+
+  ****To generate statistic Actual Delivery Time & KDE Plot****
+
+  ````python
+  statistic(dv1, 'actual_delivery_time_minutes')
+  ````
+
+  Output:
+- the mean of  actual_delivery_time_minutes column : 34.54
+- the median of actual_delivery_time_minutes column: 32.0
+- the skewness ofactual_delivery_time_minutes column : 1.1576023425072235
+
+````python
+plt.figure(figsize=(4,4))
+sns.kdeplot(data=dv1, x='actual_delivery_time_minutes', fill=True, color='brown')
+plt.title('KDE distribution of actual delivery time in minutes')
+plt.xlabel('actual_delivery_time_minutes')
+plt.show()
+````
+![KDE Plot actual_delivery_time](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/Kde_actual.png)
+
+***Interpretation***
+- The Mean  of actual delivery time( 34.54 ) is higher than the Median
+(32.0), largely a small group of  substantially high-minutes of actual time delivery,
+therefore the small group of substantially high-minutes pull the Mean upward,
+hence It's strongly right skewed.
+
+
+***Identifying Outliers columns: 'customer_age', 'actual_delivery_time_minutes', and 'distance_km'***
+````python
+def otl(c,d):
+  Q1 = c[d].quantile(0.25)
+  Q3 = c[d].quantile(0.75)
+  IQR = Q3 - Q1
+  Lower = Q1 - (1.5*Q1)
+  Upper = Q3 + (1.5*Q3)
+
+  Outliers = c[d][(c[d] < Lower) | (c[d] > Upper)]
+  No_Outliers = c[d][(c[d] >= Lower) & (c[d] <= Upper)]
+
+  print(f'Q1 = {Q1}')
+  print(f'Q3 = {Q3}')
+  print(f'IQR = {IQR}')
+  print(f'Lower = {Lower}')
+  print(f'Upper = {Upper}')
+  if Outliers.empty:
+    print(f'{d} Column has no Outliers')
+  else:
+    print(f'The number of outliers of {d}: {len(Outliers)}')
+
+otl(dv1,'distance_km')
+````
+Output: 
+- Q1 = 2.8
+- Q3 = 5.9
+- IQR = 3.1000000000000005
+- Lower = -1.3999999999999995
+- Upper = 14.750000000000002
+- The number of outliers of distance_km: 509
+
+````python
+otl(dv1,'customer_age')
+````
+
+Output: 
+- Q1 = 21.0
+- Q3 = 33.0
+- IQR = 12.0
+- Lower = -10.5
+- Upper = 82.5
+- customer_age Column has no Outliers
+
+````python
+otl(dv1,'actual_delivery_time_minutes')
+````
+Output:
+- Q1 = 25.0
+- Q3 = 42.0
+- IQR = 17.0
+- Lower = -12.5
+- Upper = 105.0
+- The number of outliers of actual_delivery_time_minutes: 97
+
+
+
+
 
 
 
