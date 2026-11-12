@@ -564,9 +564,18 @@ Output:
      at 49.8 and 47.2 respectively, meanwhile night-delivery at 19-23 p.m  was the most prolonged period on average
 
 ***Conclusion***
-- The strong relevantly factors that drive late deliveries are weather, traffic level and hour_group.
+- The strong relevantly factors that drive late deliveries are weather, traffic level and night deliveries over 7 p.m.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
+
+
+#### Business Question no.3
+
+****How accurate are delivery estimates?****
+
+To compare estimated and actual delivery time by visualizing in Tableau
+
+![The difference between estimated and actual delivery times]
 
 
 
