@@ -34,8 +34,8 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 7.	order_hour : Hour of Order
 8.	day_of_week : Days in a week
 9.	is_weekend : Binary column , Indicating the days are (0 for weekdays , 1 for weekend)
-10.	city : CITY A,B,C and D
-11.	delivery_area : CITY A-D WITH AREA 1-10
+10.	city : City A,B,C and D
+11.	delivery_area : City A-D WITH AREA 1-10
 12.	customer_age : Customer age
 13.	customer_type : Consists of 3 types: new, regular, and premium
 14.	restaurant_type : Consists of 6 categorys : Asian, Burger, Dessert, Healthy, Local, and Pizza
@@ -485,7 +485,7 @@ dv1['hour_group'] = pd.cut(dv1['order_hour'],
                            labels = label_hour)
 ````
 
-****Creating temporary DataFrame variable to apply with Groupby to turn into pivot****
+****Creating temporary DataFrame variable with Groupby and pivot****
 
 ````python
 late = dv1[['late_delivery', 'restaurant_primary_category','actual_delivery_time_minutes']]
@@ -493,7 +493,78 @@ grouped_late = np.round(late.groupby(['late_delivery','restaurant_primary_catego
 late_pivot = grouped_late.pivot(index='late_delivery',columns = 'restaurant_primary_category')
 late_pivot
 ````
+Output:
+
 ![Pivot table averaged Actual delivery time by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv1_cat_act.png)
+
+***Interpretation***
+- The healthy, Asian and pizza restaurant had the highest rate delay
+for actual delivery time at 44.3,43.3, and 43,1 respectively,
+contrast with burger that had the shortest time frame in on-time delivery
+
+****Creating function to identify late delivery in city, hour_group,traffic, weather****
+````python
+def late1 (a,b,c,d):
+  late_gr = a[[b,c,d]]
+  grby_late = np.round(late_gr.groupby([b,c],as_index=False).mean(),1)
+  # Creating pivot
+  pivot_grby_late = grby_late.pivot(index= b, columns =c)
+
+  print(f'The Groupby column {b} & {c} from {d} on average : \n {grby_late}')
+  print()
+  print()
+  print(f'The pivot table column {c} with {b} as index: \n {pivot_grby_late}')
+
+late1(dv1,'late_delivery','city','actual_delivery_time_minutes')
+````
+Output:
+
+![Pivot table averaged Actual delivery time by city](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv2_city_act.png)
+
+***Interpretation***
+- The Actual delivery time for late arrivals of each city is relatively similar.
+
+````python
+late1(dv1,'late_delivery','weather','actual_delivery_time_minutes')
+````
+Output:
+
+![Pivot table averaged Actual delivery time by weather](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv3_weather_act.png)
+
+***Interpretation***
+- Actual time on average for late arrivals soared in storm.
+
+
+
+````python
+late1(dv1,'late_delivery','traffic_level','actual_delivery_time_minutes')
+````
+
+Output:
+
+![Pivot table averaged Actual delivery time by traffic_level](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv4_traffic_act.png)
+
+***Interpretation***
+-  Actual time on average for late arrivals has high rate in high traffic_level.
+
+
+Transforming the datatype hour_group column into string
+````python
+dv1['hour_group'] = dv1['hour_group'].astype(str)
+late1(dv1,'late_delivery','hour_group','actual_delivery_time_minutes')
+````
+
+Output:
+
+![Pivot table averaged Actual delivery time by hour_group](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv_5_hour_act.png)
+
+
+***Interpretation***
+- The Storm and high traffic level had the highest rate for delay of actual delivery
+     at 49.8 and 47.2 respectively, meanwhile night-delivery at 19-23 p.m  was the most prolonged period on average
+
+***Conclusion***
+- The strong relevantly factors that drive late deliveries are weather, traffic level and hour_group.
 
 
 
