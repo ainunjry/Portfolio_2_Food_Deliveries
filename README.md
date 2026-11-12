@@ -10,6 +10,7 @@
 - [EDA](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#exploratory-data-analysis)
 - [Business Question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
 - [Late Deliveries Analysis Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
+- [Business Question no.3](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no3)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
@@ -573,9 +574,40 @@ Output:
 
 ****How accurate are delivery estimates?****
 
-To compare estimated and actual delivery time by visualizing in Tableau
+To compare actual and estimated delivery time by visualizing in Tableau
 
-![The difference between estimated and actual delivery times]
+![The difference between estimated and actual delivery times](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/dif%20act-est%20tableau.png)
+
+***Interpretation***
+- Actual delivery times were 2 -3 minutes (Early) shorter than estimated time, accounted for 28% of total orders
+significantly higher than on-time deliveries, that accounted for 10%.
+Meanwhile minor dalays of approximately 2 minutes longer than estimated time, reached higher rate at 36%  of total orders,
+constrast to severe delays, with bigger difference between actual and estimated time by approximately  9 minutes more
+
+
+#### Business Question no.4
+
+****Where are the operational bottlenecks?****
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
