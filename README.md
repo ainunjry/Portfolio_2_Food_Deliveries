@@ -388,6 +388,7 @@ the plausible external factors were associated with these outliers
 
 
 ****Correlation two-column or multi-column****
+#### Business Question no.1 : ****What drives 'Actual delivery time' ?****
 
 Identifying correlation between 2 columns
 
@@ -452,6 +453,19 @@ Output:
 - Since the p_value > 0.1, the correlation between partner experienced-months
 and actual delivery time has no evidence that it's significant, the pearson_coef
 measures the two variables most likely do not affect each other.
+
+#### Late Deliveries Analysis Question No.1
+****What drives 'Actual delivery time' ?****
+
+[Click here to view Business question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#business-question-no1--what-drives-actual-delivery-time-)
+
+***Interpretation***
+- The distance_km is strongly relevant with Actual_delivery_time.
+
+
+
+
+
 
 
 
