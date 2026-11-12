@@ -566,6 +566,7 @@ Output:
 ***Conclusion***
 - The strong relevantly factors that drive late deliveries are weather, traffic level and hour_group.
 
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 
 
