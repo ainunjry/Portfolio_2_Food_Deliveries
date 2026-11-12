@@ -9,6 +9,7 @@
 - [Data Cleaning](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-cleaning)
 - [EDA](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#exploratory-data-analysis)
 - [Business Question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
+- [Late Deliveries Analysis Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
@@ -465,7 +466,34 @@ measures the two variables most likely do not affect each other.
 #### Late Deliveries Analysis Question No.2
 ****What drives late deliveries ?****
 
+****Creating bin, label for customer_age and column age_group****
+````python
+bin2 = [17,30,40,50,60]
+label =['18 - 29 years', '30 - 40 years', '41 - 50 years', '51 - 60 years']
+dv1['age_group'] = pd.cut(dv1['customer_age'],
+                          bins = bin2,
+                          labels=label)
+````
 
+****Creating group for order_hour****
+````python
+hour = [np.linspace(min(dv1['order_hour']),max(dv1['order_hour']),5)]
+day = [-1,6,12,18,23]
+label_hour = ['00-06 a.m', '07-12 a.m', '13-18 p.m', '19-23 p.m']
+dv1['hour_group'] = pd.cut(dv1['order_hour'],
+                           bins = day,
+                           labels = label_hour)
+````
+
+****Creating temporary DataFrame variable to apply with Groupby to turn into pivot****
+
+````python
+late = dv1[['late_delivery', 'restaurant_primary_category','actual_delivery_time_minutes']]
+grouped_late = np.round(late.groupby(['late_delivery','restaurant_primary_category'],as_index=False).mean(),1)
+late_pivot = grouped_late.pivot(index='late_delivery',columns = 'restaurant_primary_category')
+late_pivot
+````
+![Pivot table averaged Actual delivery time by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv1_cat_act.png)
 
 
 
