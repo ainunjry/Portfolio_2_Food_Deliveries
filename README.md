@@ -693,7 +693,7 @@ np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')
 ![Late order volumes by hour group](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_HG_VMpng.png)
 
 ***Interpretation***
-- The frequency of late deliveries across restaurants and hour_group did not
+- late deliveries volumes across restaurant categories and hour_group did not
     differ significantly, the pizza retaurant had the highest rate at 36.9%, and
     36.5% in rush hour (07-12 a.m).
 
@@ -702,6 +702,30 @@ np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')
 #### Business Question No.5
 
 ****How does delivery performance relate to customer experience?****
+
+V.1 Creating bins and labels for delivery_partner_experience_months
+````python
+partner = [0,15,30,45,60]
+label_partner = ['New','Developing','Experienced','Expert']
+print(partner)
+print()
+print(label_partner)
+````
+
+V.2  Creating new column for partner experienced grouping
+````python
+dv1['partner_exp_group'] = pd.cut(dv1['delivery_partner_experience_months'],
+                                 bins = partner,
+                                 labels = label_partner)
+````
+
+V.3 Identifying cancelled order volumes & completed by partner experience group
+````python
+np.round(pd.crosstab(dv1['partner_exp_group'],dv1['order_status'], normalize='index')*100,1)
+````
+
+![partner experience group-order status](
+
 
 
 
