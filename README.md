@@ -696,6 +696,8 @@ np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')
     differ significantly, the pizza retaurant had the highest rate at 36.9%, and
     36.5% in rush hour (07-12 a.m).
 
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
+
 #### Business Question No.5
 
 ****How does delivery performance relate to customer experience?****
