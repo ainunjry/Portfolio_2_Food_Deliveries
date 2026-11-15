@@ -459,13 +459,54 @@ Output:
 and actual delivery time has no evidence that it's significant, the pearson_coef
 measures the two variables most likely do not affect each other.
 
+****identifying correlation between Estimated and Actual Delivery time****
+
+![View code and table, please click here](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#late-deliveries-analysis-question-no2)
+
 ****Conclusion :****
-- The distance_km is strongly relevant with Actual_delivery_time.
+- The distance_km and estimated delivery time are strongly relevant with Actual_delivery_time.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 #### Late Deliveries Analysis Question No.2
 ****What drives late deliveries ?****
+
+#### Identifying correlation multi-column by late delivery, indicator = 1
+````python
+est = dv1.groupby('late_delivery')[['restaurant_preparation_time_minutes','actual_delivery_time_minutes','estimated_delivery_time_minutes','delivery_partner_rating','customer_rating','restaurant_rating']].corr()
+est
+````
+![A table that show multi-column correlation grouped by 'late_delivery'](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/LD_MULTI_CORR.png)
+
+***Interpretation***
+- It appeared that 4 columns has strong positive linear for late_delivery category:
+- estimated_delivery_time_minutes & actual_delivery_time_minutes : 0.961668,
+- restaurant_rating & restaurant_preparation_time_minutes : 0.065188
+
+Measuring the correlation strength by pearson and p_value
+````python
+pearson_coef,p_value = stats.pearsonr(dv1['restaurant_preparation_time_minutes'],dv1['restaurant_rating'])
+print(f'pearson restaurant_rating & preparation_time : {pearson_coef} \n p_value : {p_value}')
+````
+Output: 
+ - pearson restaurant_rating & preparation_time : 0.04421753694673063
+ -  p_value : 4.5123150568960764e-23
+
+````python
+pearson_coef,p_value = stats.pearsonr(dv1['estimated_delivery_time_minutes'],dv1['actual_delivery_time_minutes'])
+print(f'pearson estimated & actual delivery times : {pearson_coef} \n p_value : {p_value}')
+````
+Output:
+- pearson estimated & actual delivery times : 0.8722208050948812
+-  p_value : 0.0
+
+***Interpretation***
+- Estimated delivery time  and actual delivery time have perfect positive linear correlation
+with weak evidence that the correlation is significant. Meanwhile restaurant_preparation_time_minutes
+and restaurant_rating have no linear correlation and obviously with either no evidence or
+significant correlation across overall late_delivery categories.
+
+[Back to Business question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
 
 ****Creating bin, label for customer_age and column age_group****
 ````python
@@ -565,7 +606,8 @@ Output:
      at 49.8 and 47.2 respectively, meanwhile night-delivery at 19-23 p.m  was the most prolonged period on average
 
 ***Conclusion***
-- The strong relevantly factors that drive late deliveries are weather, traffic level and night deliveries over 7 p.m.
+- The strong relevantly factors that drive late deliveries are weather, traffic level, night deliveries over 7 p.m, and
+  actual and estimated delivery time.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
@@ -588,6 +630,8 @@ constrast to severe delays, with bigger difference between actual and estimated 
 #### Business Question no.4
 
 ****Where are the operational bottlenecks?****
+
+
 
 
 
