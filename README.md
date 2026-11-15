@@ -397,7 +397,7 @@ the plausible external factors were associated with these outliers
 ****What drives 'Actual delivery time' ?****
 
 
-Identifying correlation between 2 columns
+I.1 Identifying correlation between 2 columns
 
 ````python
 x = dv1[['customer_age','order_hour','distance_km', 'actual_delivery_time_minutes', 'tip_amount', 'restaurant_rating','customer_rating']]
@@ -416,7 +416,7 @@ Importing library Scipy
 from scipy import stats
 ````
 
-Identifying the correlation strength by pearson
+I.2 Identifying the correlation strength by pearson
 ````python
 pearson_coef,p_value = stats.pearsonr(dv1['distance_km'],dv1['actual_delivery_time_minutes'])
 print(f'Pearson_coef: {pearson_coef}')
@@ -431,7 +431,7 @@ Output:
    were linear relationship moderately strong, since the p_value (0.0) measured
     significant correlation.
 
-Visualizing the correlation by regplot
+I.3 Visualizing the correlation by regplot
 ````python
 plt.figure(figsize=(4,4))
 sns.regplot(data= dv1, x='distance_km', y= 'actual_delivery_time_minutes', color='green')
@@ -440,7 +440,7 @@ plt.ylim(0,)
 
 ![The correlation 2-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/sns_regplot.png)
 
-Identifying the correlation between partner experienced-months and actual delivery time
+I.4 Identifying the correlation between partner experienced-months and actual delivery time
 ````python
 partner = dv1[['delivery_pa rtner_experience_months', 'actual_delivery_time_minutes']]
 partner.corr()
@@ -461,7 +461,7 @@ Output:
 and actual delivery time has no evidence that it's significant, the pearson_coef
 measures the two variables most likely do not affect each other.
 
-****Identifying correlation between Estimated and Actual Delivery time****
+****I.5 Identifying correlation between Estimated and Actual Delivery time****
 
 The code and table have been displayed in Business question no.2
 
@@ -472,10 +472,11 @@ The code and table have been displayed in Business question no.2
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
+
 #### Late Deliveries Analysis Question No.2
 ****What drives late deliveries ?****
 
-#### Identifying correlation multi-column by late delivery, indicator = 1
+#### II.1 Identifying correlation multi-column by late delivery, indicator = 1
 ````python
 est = dv1.groupby('late_delivery')[['restaurant_preparation_time_minutes','actual_delivery_time_minutes','estimated_delivery_time_minutes','delivery_partner_rating','customer_rating','restaurant_rating']].corr()
 est
@@ -487,7 +488,7 @@ est
 - estimated_delivery_time_minutes & actual_delivery_time_minutes : 0.961668,
 - restaurant_rating & restaurant_preparation_time_minutes : 0.065188
 
-Measuring the correlation strength by pearson and p_value
+II.2 Measuring the correlation strength by pearson and p_value
 ````python
 pearson_coef,p_value = stats.pearsonr(dv1['restaurant_preparation_time_minutes'],dv1['restaurant_rating'])
 print(f'pearson restaurant_rating & preparation_time : {pearson_coef} \n p_value : {p_value}')
@@ -512,7 +513,7 @@ significant correlation across overall late_delivery categories.
 
 [Back to Business question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
 
-****Creating bin, label for customer_age and column age_group****
+****II.3 Creating bin, label for customer_age and column age_group****
 ````python
 bin2 = [17,30,40,50,60]
 label =['18 - 29 years', '30 - 40 years', '41 - 50 years', '51 - 60 years']
@@ -521,7 +522,7 @@ dv1['age_group'] = pd.cut(dv1['customer_age'],
                           labels=label)
 ````
 
-****Creating group for order_hour****
+****II.4 Creating group for order_hour****
 ````python
 hour = [np.linspace(min(dv1['order_hour']),max(dv1['order_hour']),5)]
 day = [-1,6,12,18,23]
@@ -531,7 +532,7 @@ dv1['hour_group'] = pd.cut(dv1['order_hour'],
                            labels = label_hour)
 ````
 
-****Creating temporary DataFrame variable with Groupby and pivot****
+****II.5 Creating temporary DataFrame variable with Groupby and pivot****
 
 ````python
 late = dv1[['late_delivery', 'restaurant_primary_category','actual_delivery_time_minutes']]
@@ -548,7 +549,7 @@ Output:
 for actual delivery time at 44.3,43.3, and 43,1 respectively,
 contrast with burger that had the shortest time frame in on-time delivery
 
-****Creating function to identify late delivery in city, hour_group,traffic, weather****
+****II.6 Creating function to identify late delivery in city, hour_group,traffic, weather****
 ````python
 def late1 (a,b,c,d):
   late_gr = a[[b,c,d]]
@@ -594,7 +595,7 @@ Output:
 -  Actual time on average for late arrivals has high rate in high traffic_level.
 
 
-Transforming the datatype hour_group column into string
+II.7 Transforming the datatype hour_group column into string
 ````python
 dv1['hour_group'] = dv1['hour_group'].astype(str)
 late1(dv1,'late_delivery','hour_group','actual_delivery_time_minutes')
@@ -648,7 +649,7 @@ def late1 (a,b,c,d):
   print()
   print(f'The pivot table column {c} with {b} as index: \n {pivot_grby_late}')
 ````
-Identifying averaged preparation time by restaurant category
+IV.1 Identifying averaged preparation time by restaurant category
 
 ````python
 late1(dv1,'late_delivery','restaurant_primary_category','restaurant_preparation_time_minutes')
@@ -656,14 +657,14 @@ late1(dv1,'late_delivery','restaurant_primary_category','restaurant_preparation_
 Output:
 ![Preparation time on average by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_LD_RC_PT.png)
 
-Identifying averaged estimated delivery time by restaurant category
+IV.2 Identifying averaged estimated delivery time by restaurant category
 ````python
 late1(dv1,'late_delivery','restaurant_primary_category','estimated_delivery_time_minutes' )
 ````
 
 ![Estimated del time on average by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_LD_RC_ES.png)
 
-Identifying averaged actual delivery time by restaurant category
+IV.3 Identifying averaged actual delivery time by restaurant category
 ````python
 late1(dv1,'late_delivery','restaurant_primary_category','actual_delivery_time_minutes')
 ````
@@ -676,7 +677,7 @@ estimated and actual delivery time on average for late arrivals
 at (20.7, 34.9, 44.3) and (19.3, 33.6, 43.3) respectively.
 
 
-Identifying the number of late order volumes by restaurant category
+IV.4 Identifying the number of late order volumes by restaurant category
 ````python
 np.round(pd.crosstab(dv1['restaurant_primary_category'],dv1['late_delivery'],normalize = 'index')*100,1)
 ````
@@ -684,7 +685,7 @@ np.round(pd.crosstab(dv1['restaurant_primary_category'],dv1['late_delivery'],nor
 ![Late order volumes by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_RC_VMpng.png)
 
 
-Identifying the number of late order volumes by restaurant category by hour group
+IV.5 Identifying the number of late order volumes by restaurant category by hour group
 ````python
 np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')*100,1)
 ````
