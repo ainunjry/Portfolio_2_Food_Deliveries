@@ -438,7 +438,7 @@ plt.ylim(0,)
 
 ![The correlation 2-column](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/sns_regplot.png)
 
-identifying the correlation between partner experienced-months and actual delivery time
+Identifying the correlation between partner experienced-months and actual delivery time
 ````python
 partner = dv1[['delivery_pa rtner_experience_months', 'actual_delivery_time_minutes']]
 partner.corr()
@@ -459,9 +459,9 @@ Output:
 and actual delivery time has no evidence that it's significant, the pearson_coef
 measures the two variables most likely do not affect each other.
 
-****identifying correlation between Estimated and Actual Delivery time****
+****Identifying correlation between Estimated and Actual Delivery time****
 
-The code and table have been viewed in Business question no.2
+The code and table have been displayed in Business question no.2
 
 ![View code and table, please click here](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/tree/main#identifying-correlation-multi-column-by-late-delivery-indicator--1)
 
