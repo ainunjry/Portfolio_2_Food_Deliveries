@@ -9,8 +9,10 @@
 - [Data Cleaning](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-cleaning)
 - [EDA](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#exploratory-data-analysis)
 - [Business Question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
-- [Late Deliveries Analysis Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
+- [Late Deliveries Analysis Business Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
 - [Business Question no.3](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no3)
+- [Business Question no.4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no4)
+- [Business Question no.5](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#business-question-no5)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
@@ -563,7 +565,7 @@ late1(dv1,'late_delivery','city','actual_delivery_time_minutes')
 ````
 Output:
 
-![Pivot table averaged Actual delivery time by city](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv2_city_act.png)
+- ![Pivot table averaged Actual delivery time by city](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv2_city_act.png)
 
 ***Interpretation***
 - The Actual delivery time for late arrivals of each city is relatively similar.
@@ -573,7 +575,7 @@ late1(dv1,'late_delivery','weather','actual_delivery_time_minutes')
 ````
 Output:
 
-![Pivot table averaged Actual delivery time by weather](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv3_weather_act.png)
+- ![Pivot table averaged Actual delivery time by weather](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/piv3_weather_act.png)
 
 ***Interpretation***
 - Actual time on average for late arrivals soared in storm.
@@ -632,6 +634,87 @@ constrast to severe delays, with bigger difference between actual and estimated 
 #### Business Question no.4
 
 ****Where are the operational bottlenecks?****
+
+ Creating function
+````python
+def late1 (a,b,c,d):
+  late_gr = a[[b,c,d]]
+  grby_late = np.round(late_gr.groupby([b,c],as_index=False).mean(),1)
+  # Creating pivot
+  pivot_grby_late = grby_late.pivot(index= b, columns =c)
+
+  print(f'The Groupby column {b} & {c} from {d} on average : \n {grby_late}')
+  print()
+  print()
+  print(f'The pivot table column {c} with {b} as index: \n {pivot_grby_late}')
+````
+Identifying averaged preparation time by restaurant category
+
+````python
+late1(dv1,'late_delivery','restaurant_primary_category','restaurant_preparation_time_minutes')
+````
+Output:
+![Preparation time on average by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_LD_RC_PT.png)
+
+Identifying averaged estimated delivery time by restaurant category
+````python
+late1(dv1,'late_delivery','restaurant_primary_category','estimated_delivery_time_minutes' )
+````
+
+![Estimated del time on average by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_LD_RC_ES.png)
+
+Identifying averaged actual delivery time by restaurant category
+````python
+late1(dv1,'late_delivery','restaurant_primary_category','actual_delivery_time_minutes')
+````
+
+![Actual time on average by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_LD_RC_AC.png)
+
+***Interpretation***
+- The healthy and Asian restaurant category have the highest rate preparation time,
+estimated and actual delivery time on average for late arrivals
+at (20.7, 34.9, 44.3) and (19.3, 33.6, 43.3) respectively.
+
+
+Identifying the number of late order volumes by restaurant category
+````python
+np.round(pd.crosstab(dv1['restaurant_primary_category'],dv1['late_delivery'],normalize = 'index')*100,1)
+````
+
+![Late order volumes by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_RC_VMpng.png)
+
+
+Identifying the number of late order volumes by restaurant category by hour group
+````python
+np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')*100,1)
+````
+
+![Late order volumes by hour group](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_HG_VMpng.png)
+
+***Interpretation***
+- The frequency of late deliveries across restaurants and hour_group did not
+    differ significantly, the pizza retaurant had the highest rate at 36.9%, and
+    36.5% in rush hour (07-12 a.m).
+
+#### Business Question No.5
+
+****How does delivery performance relate to customer experience?****
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
