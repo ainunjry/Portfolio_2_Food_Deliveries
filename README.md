@@ -70,7 +70,9 @@ Furthermore, the analysis aims to mitigate existing gaps to optimize delivery ti
 
 
 #### Data Sources
-
+The primary dataset used  for this analysis is RESTAURANT.xlsx from KAGGLE,  containing 37 columns and 50.000 records.
+Its columns provided to track the entire operational life cycle fro other placement to final  delivery,
+covering  customer demand, restaurant preparation and diriver.
 
 #### Tools
 
@@ -393,7 +395,7 @@ the plausible external factors were associated with these outliers
 
 
 ****Correlation two-column or multi-column****
-#### Business Question no.1 : 
+### Business Question no.1 : 
 ****What drives 'Actual delivery time' ?****
 
 
@@ -477,7 +479,7 @@ The code and table have been displayed in Business question no.2
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 
-#### Late Deliveries Analysis Question No.2
+### Late Deliveries Analysis Question No.2
 ****What drives late deliveries ?****
 
 #### II.1 Identifying correlation multi-column by late delivery, indicator = 1
@@ -629,11 +631,11 @@ Output:
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 
-#### Business Question no.3
+### Business Question no.3
 
 ****How accurate are delivery estimates?****
 
-To compare actual and estimated delivery time by visualizing in Tableau
+III.To compare actual and estimated delivery time by visualizing in Tableau
 ---
 
 ![The difference between estimated and actual delivery times](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/dif%20act-est%20tableau.png)
@@ -645,7 +647,7 @@ Meanwhile minor dalays of approximately 2 minutes longer than estimated time, re
 constrast to severe delays, with bigger difference between actual and estimated time by approximately  9 minutes more
 
 
-#### Business Question no.4
+### Business Question no.4
 
 ****Where are the operational bottlenecks?****
 
@@ -776,7 +778,7 @@ ORDER BY of_orders DESC;
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
-#### Business Question No.5
+### Business Question No.5
 
 ****How does delivery performance relate to customer experience?****
 
@@ -805,7 +807,16 @@ np.round(pd.crosstab(dv1['partner_exp_group'],dv1['order_status'], normalize='in
 ![partner experience group-order status](
 
 
+### SCOPE AND BOUNDARIES
+Since multi columns are interdependent, either the categories in restaurant or customer type, 
+tracking the  lifecycle from preparation time to actual deliveries is crucial to observe its mobility and the relationship.
+I dropped some insignificant columns to optimize the file size , for uploading into phpmyadmin such as order_timestamp and delivery_area.
+Due to limitatio in tableau version, I have provided visualization in GIF and MP4 format to ensure concice dashboard view.
 
+![Click here to view dashboard](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Tableau%20portfolio_2.gif)
+
+
+[Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 
 
