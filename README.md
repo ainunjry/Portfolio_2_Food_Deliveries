@@ -13,6 +13,7 @@
 - [Business Question no.3](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no3)
 - [Business Question no.4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no4)
 - [Business Question no.5](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/tree/main#business-question-no5)
+- [Key Insight](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#key-insight)
 - [Scope and Boundaries](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#scope-and-boundaries)
 
 ## Business Understanding
