@@ -883,6 +883,94 @@ CASE
 ***Interpretation***
 - Regular customers accounted for the highest order volume, directly proportional to volume of cancellation orders due to   driver unassigned.
 
+V.8 Identifying restaurant preparation , estimated and actual time on average by cancellation reason
+---
+```sql
+SELECT
+     cancellation_reason,
+     ROUND(AVG(restaurant_preparation_time_minutes),1) AS AVG_prep_time,
+     ROUND(AVG(estimated_delivery_time_minutes),1) AS AVG_estimated_time,
+     ROUND(AVG(actual_delivery_time_minutes),1) AS AVG_actual_dtime,
+     COUNT(order_id) AS order_volume 
+FROM del
+GROUP BY cancellation_reason
+ORDER BY order_volume;
+```
+![BQ5-II-SQL-CR-AVG](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-II-SQL-CR-AVG.png)
+
+***Interpretation***
+- Cancelled order count  due to long preparation delay, recorded the highest an average of  preparation and estimated time.
+
+V.9A Identifying customer, partner, restaurant ratings , estimated dan actual  time on average by customer type with condition customer_rating less than 4.0
+---
+```sql
+SELECT	
+   `customer_type`,	
+   ROUND(AVG(`customer_rating`),1) AS customer_rt,	
+   ROUND(AVG(`restaurant_rating`),1) AS restaurant_rt,	
+   ROUND(AVG(`delivery_partner_rating`),1) AS del_partner_rt,	
+   ROUND(AVG(`restaurant_preparation_time_minutes`),1) AS rest_pre_time,	
+   ROUND(AVG(estimated_delivery_time_minutes),1) AS est_del_time,	
+   ROUND(AVG(`actual_delivery_time_minutes`),1) AS act_del_time,	
+   FORMAT(COUNT(order_id),0) AS order_volume	
+FROM del	
+WHERE customer_rating < 4.0	
+GROUP BY `customer_type`	
+ORDER BY order_volume;	
+```
+V.9B Identifying customer, partner, restaurant ratings , estimated dan actual  time on average by customer type with condition customer_rating  equal and more than 4.0
+---
+```sql
+SELECT				
+   `customer_type`,				
+   ROUND(AVG(`customer_rating`),1) AS customer_rt,				
+   ROUND(AVG(`restaurant_rating`),1) AS restaurant_rt,				
+   ROUND(AVG(`delivery_partner_rating`),1) AS del_partner_rt,				
+   ROUND(AVG(`restaurant_preparation_time_minutes`),1) AS rest_pre_time,				
+   ROUND(AVG(estimated_delivery_time_minutes),1) AS est_del_time,				
+   ROUND(AVG(`actual_delivery_time_minutes`),1) AS act_del_time,				
+   FORMAT(COUNT(order_id),0) AS order_volume				
+FROM del				
+WHERE customer_rating >= 4.0				
+GROUP BY `customer_type`				
+ORDER BY order_volume;				
+```
+
+![BQ5-II-SQL-CT-rt less than 4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-II-SQL-CT-rt%20less%20than%204.png)
+
+![BQ5-II-SQL-CT-rt more than 4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-II-SQL-CT-rt%20more%20than%204.png)
+
+
+***Interpretation***
+- Customers  with  customer_ rating less than 4.0 was more essentially relevant to restaurant preparation time that averaged 17 minutes than estimated and actual delivery time,
+contrast to customers with ratings equally or more than 4.0 that restaurant preparation time  generated  14 - 15 minutes.
+
+
+V.10 Comparing order volume and restaurant preparation time on average on weekend and weekdays
+---
+```sql
+SELECT			
+customer_type,			
+COUNT(CASE WHEN is_weekend = 1 THEN order_id END) AS _of_order_w_end,			
+ROUND(AVG(CASE WHEN is_weekend = 1 THEN `restaurant_preparation_time_minutes` END),1) AS AVG_prep_time_w_end,			
+COUNT(CASE WHEN is_weekend = 0 THEN order_id END) AS _of_order_w_days,			
+ROUND(AVG(CASE WHEN is_weekend = 0 THEN `restaurant_preparation_time_minutes` END),1) AS AVG_prep_time_w_days			
+FROM del			
+GROUP BY customer_type			
+ORDER BY _of_order_w_end DESC;
+```
+![BQ5-II-SQL-WD-WE-PRE_TIME](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-II-SQL-WD-WE-PRE_TIME.png)
+
+***Interpretation***
+- An average of  restaurant preparation time  either on weekend or weekdays was similar,
+conversely , order volume on weekdays accounted for two - three as high than the overall volume on weekend.
+
+****Conclusion****
+- Customer rating  is essentially related to restaurant preparation time, moreover, cancelled order volume due to long preparation delay  accounted for the highest preparation and estimated rate.
+It comes to the highest cancelled order volume related partner-experience in months, generating nearly 45 %  on average due to driver unassigned across all cancellation reason.
+
+### Key Insight
+
 
 
 ### Scope and Boundaries
