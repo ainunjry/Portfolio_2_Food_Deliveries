@@ -800,12 +800,13 @@ dv1['partner_exp_group'] = pd.cut(dv1['delivery_partner_experience_months'],
                                  labels = label_partner)
 ````
 
-V.3 Identifying cancelled order volumes & completed by partner experience group
+V.3Identifying cancelled order volumes by partner experienced group
 ````python
-np.round(pd.crosstab(dv1['partner_exp_group'],dv1['order_status'], normalize='index')*100,1)
+np.round(pd.crosstab(dv1['partner_exp_group'],dv1['cancellation_reason'], normalize='index')*100,1)
 ````
 
-![partner experience group-order status](
+![
+
 
 
 ### Scope and Boundaries
