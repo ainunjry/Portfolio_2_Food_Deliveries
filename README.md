@@ -794,6 +794,7 @@ print(label_partner)
 ````
 
 V.2  Creating new column for partner experienced grouping
+---
 ````python
 dv1['partner_exp_group'] = pd.cut(dv1['delivery_partner_experience_months'],
                                  bins = partner,
@@ -834,7 +835,7 @@ np.round(pd.crosstab(dv1['cancellation_reason'],dv1['customer_type'],normalize =
   In addition regular customer had the higher rate of  overall cancellation orders, accounted for over 40% on average.
   
 
-V.5 Identifying cancelled order volume by customer type
+V.6 Identifying cancelled order volume by customer type
 ----
 ```sql
 SELECT customer_type,
@@ -855,7 +856,7 @@ ORDER BY of_orders DESC;
 - None of significant spent  for   discount reward , total, item, service fee, dan tip amount among customer type,
   but  premium type with free charged delivery.
 
-V.6 Identifying driver unassigned orders by partner-experieced group
+V.7 Identifying driver unassigned orders by partner-experieced group
 ---
 ```sql
 SELECT							
@@ -880,7 +881,7 @@ CASE
 ![SQL-Driver unassigned-by CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-SQL-DU-PEG-CST.png)
 
 ***Interpretation***
-- 
+
 
 
 ### Scope and Boundaries
