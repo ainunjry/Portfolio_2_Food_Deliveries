@@ -13,6 +13,7 @@
 - [Business Question no.3](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no3)
 - [Business Question no.4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no4)
 - [Business Question no.5](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#business-question-no5)
+- [Scope and boundaries](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#scope-and-boundaries)
 
 ## Business Understanding
 In the food industry, delivery service plays critical role, serving  two sides of same coin alongsides sales.
@@ -807,13 +808,13 @@ np.round(pd.crosstab(dv1['partner_exp_group'],dv1['order_status'], normalize='in
 ![partner experience group-order status](
 
 
-### SCOPE AND BOUNDARIES
+### Scope and Boundaries
 Since multi columns are interdependent, either the categories in restaurant or customer type, 
 tracking the  lifecycle from preparation time to actual deliveries is crucial to observe its mobility and the relationship.
 I dropped some insignificant columns to optimize the file size , for uploading into phpmyadmin such as order_timestamp and delivery_area.
 Due to limitatio in tableau version, I have provided visualization in GIF and MP4 format to ensure concice dashboard view.
 
-![Click here to view dashboard](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Tableau%20portfolio_2.gif)
+[Click here to view dashboard](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Tableau%20portfolio_2.gif)
 
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
