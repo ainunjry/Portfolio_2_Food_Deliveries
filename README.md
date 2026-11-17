@@ -830,9 +830,9 @@ np.round(pd.crosstab(dv1['cancellation_reason'],dv1['customer_type'],normalize =
 
 ***Interpretation***
 - Partners with experience over 30 months  were more capabale to mitigate driver unassigned orders.
-  The local one had the highest cancelled orders rate covering 95% cancellation reason by restaurant category ,
+  The local one accounted for the highest cancelled orders volume covering 95% of overall cancellation reasons by restaurant category ,
   excluded long preparation delay reason, that Asian category were more dominant.
-  In addition regular customer had the higher rate of  overall cancellation orders, accounted for over 40% on average.
+  In addition, regular customers generated the highest cancelled orders count, recorded over 40% on average.
   
 
 V.6 Identifying cancelled order volume by customer type
@@ -853,8 +853,8 @@ ORDER BY of_orders DESC;
 ![SQL- Cancelled orders by CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-SQL-AVG%20SPENT-CT.png)
 
 ***Interpretation***
-- None of significant spent  for   discount reward , total, item, service fee, dan tip amount among customer type,
-  but  premium type with free charged delivery.
+- None of significant differences that spent by customers for discount reward , total, item, service fee, dan tip amount among customer types,
+  but  premium customers with free charged delivery.
 
 V.7 Identifying driver unassigned orders by partner-experieced group
 ---
@@ -881,6 +881,7 @@ CASE
 ![SQL-Driver unassigned-by CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-SQL-DU-PEG-CST.png)
 
 ***Interpretation***
+- Regular customers accounted for the highest order volume, directly proportional to volume of cancellation orders due to   driver unassigned.
 
 
 
