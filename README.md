@@ -81,6 +81,7 @@ covering  customer demand, restaurant preparation and diriver.
 - Google-Colab
   [Download here ](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Delivery.ipynb)
 - XAMPP PhpMyAdmin - Data analysis
+  [Click here to view SQL Queries](https://github.com/ainunjry/Tools_Project-2_Delivery-Analysis/blob/main/Script-portfolio-2-delivery-order.sql)
 - Tableau - Visualization
 
 #### Business Questions
