@@ -705,7 +705,7 @@ np.round(pd.crosstab(dv1['restaurant_primary_category'],dv1['late_delivery'],nor
 ![Late order volume\ by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_RC_VMpng.png)
 
 
-IV.5 Identifying the number of late order volumes by hour group
+IV.5 Identifying the number of late order volume by hour group
 ---
 ````python
 np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')*100,1)
@@ -730,7 +730,7 @@ np.round(pd.crosstab(dv1['cancellation_reason'],dv1['hour_group'],normalize ='in
   In contrast, orders delayed due to unassigned drivers happened most often at night (after 7:00 p.m.),
   accounting for 38.3%.
 
-IV.7 Late and On-time deliveries volumes by partner-experienced-in-months group
+IV.7 Late and On-time deliveries volume by partner-experienced-in-months group
 ---
 ```sql
 SELECT
