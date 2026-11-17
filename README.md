@@ -9,7 +9,7 @@
 - [Data Cleaning](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#data-cleaning)
 - [EDA](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#exploratory-data-analysis)
 - [Business Question no.1](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no1-)
-- [Late Deliveries Analysis Business Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
+- [Business Question No.2](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#late-deliveries-analysis-question-no2)
 - [Business Question no.3](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no3)
 - [Business Question no.4](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#business-question-no4)
 - [Business Question no.5](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/edit/main/README.md#business-question-no5)
@@ -714,6 +714,65 @@ np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')
 - late deliveries volumes across restaurant categories and hour_group did not
     differ significantly, the pizza retaurant had the highest rate at 36.9%, and
     36.5% in rush hour (07-12 a.m).
+
+IV.6  Identifying cancelled reason by hour_group
+---
+````python
+np.round(pd.crosstab(dv1['cancellation_reason'],dv1['hour_group'],normalize ='index')*100,1)
+````
+![pic-CR-by-HG](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_ii_CR_HG.png)
+
+***Interpretation***
+- Orders delayed due to long preparation times occurred most frequently from 7:00 a.m. to 6:00 p.m.
+  In contrast, orders delayed due to unassigned drivers happened most often at night (after 7:00 p.m.),
+  accounting for 38.3%.
+
+IV.7 Late and On-time deliveries volumes by partner-experienced-in-months group
+---
+```sql
+SELECT
+CASE
+  WHEN delivery_partner_experience_months >=1 AND delivery_partner_experience_months <=15 THEN 'new'
+  WHEN delivery_partner_experience_months >=16 AND delivery_partner_experience_months <=30 THEN 'developing'
+  WHEN delivery_partner_experience_months >=31 AND delivery_partner_experience_months <=45 THEN 'experienced'
+  WHEN delivery_partner_experience_months >=46 AND delivery_partner_experience_months <=60 THEN
+  'expert'
+  END AS partner_exp_group,
+COUNT(CASE WHEN late_delivery = 1 THEN order_id END) AS late_arrivals,
+COUNT(CASE WHEN late_delivery = 0 THEN order_id END) AS on_time_delivery,
+FROM del
+GROUP BY partner_exp_group
+ORDER BY late_arrivals DESC;
+```
+
+![Pic-SQL-LD-OTD-PEG](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_II_SQL_PEG_LD_OD.png)
+
+***Interpretation***
+- Partners with over 45 months of experience are more capable of mitigating late arrivals,
+  though they do not stand out when it comes to maintaining on-time deliveries.
+
+IV.8 Comparing late arrivals by restaurant categories on weekend and weekdays
+---
+```sql
+SELECT 
+restaurant_primary_category, 
+COUNT(CASE WHEN is_weekend = 1 THEN order_id END) AS Weekend,
+COUNT(CASE WHEN is_weekend = 0 THEN order_id END) AS Weekdays,
+COUNT(order_id) AS of_orders,
+ROUND(AVG(actual_delivery_time_minutes),1) AS AVG_Actual_dtime
+FROM del
+WHERE late_delivery = 1
+GROUP BY restaurant_primary_category
+ORDER BY of_orders DESC;
+```
+![pic-sql-wk-wd-rc](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_II_SQL_RC_WE_WD.png)
+
+***Interpretation***
+- There is a significant relationship between the day of the week (weekdays vs. weekends) and late deliveries,
+  with delays occurring much more frequently on weekdays—especially in the Burger and Local restaurant categories.
+
+****Conclusion****
+- Operational bottlenecks involve multiple factors, including food preparation time as well as estimated and actual delivery times.Partner tenure (in months) also significantly correlated  late delivery rates and unassigned driver incidents.Furthermore, late deliveries occurred nearly 100% more frequently on weekdays compared to weekends.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
