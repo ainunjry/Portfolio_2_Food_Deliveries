@@ -696,13 +696,13 @@ estimated and actual delivery time on average for late arrivals
 at (20.7, 34.9, 44.3) and (19.3, 33.6, 43.3) respectively.
 
 
-IV.4 Identifying the number of late order volumes by restaurant category
+IV.4 Identifying the number of late order volume by restaurant category
 ---
 ````python
 np.round(pd.crosstab(dv1['restaurant_primary_category'],dv1['late_delivery'],normalize = 'index')*100,1)
 ````
 
-![Late order volumes by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_RC_VMpng.png)
+![Late order volume\ by restaurant category](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_RC_VMpng.png)
 
 
 IV.5 Identifying the number of late order volumes by hour group
@@ -714,7 +714,7 @@ np.round(pd.crosstab(dv1['hour_group'],dv1['late_delivery'], normalize ='index')
 ![Late order volumes by hour group](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ4_CT_LD_HG_VMpng.png)
 
 ***Interpretation***
-- late deliveries volumes across restaurant categories and hour_group did not
+- late deliveries volume across restaurant categories and hour_group did not
     differ significantly, the pizza retaurant had the highest rate at 36.9%, and
     36.5% in rush hour (07-12 a.m).
 
@@ -800,13 +800,87 @@ dv1['partner_exp_group'] = pd.cut(dv1['delivery_partner_experience_months'],
                                  labels = label_partner)
 ````
 
-V.3Identifying cancelled order volumes by partner experienced group
+V.3 Identifying cancelled order volume by partner experienced group
+---
 ````python
 np.round(pd.crosstab(dv1['partner_exp_group'],dv1['cancellation_reason'], normalize='index')*100,1)
 ````
 
-![
+![PIC-peg-cr](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-PEG-CR%20VM.png)
 
+
+V.4 Identifying cancelled order volume by restaurant category
+---
+````python
+np.round(pd.crosstab(dv1['cancellation_reason'],dv1['restaurant_primary_category'],normalize ='index')*100,1)
+````
+
+![PIC-CR-RC-VM](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-CR-RC-VM.png)
+
+
+V.5 Identifying cancelled order volume by customer type
+---
+````python
+np.round(pd.crosstab(dv1['cancellation_reason'],dv1['customer_type'],normalize ='index')*100,1)
+````
+
+![PIC-CR-CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-CR-CTVM.png)
+
+
+***Interpretation***
+- Partners with experience over 30 months  were more capabale to mitigate driver unassigned orders.
+  The local one had the highest cancelled orders rate covering 95% cancellation reason by restaurant category ,
+  excluded long preparation delay reason, that Asian category were more dominant.
+  In addition regular customer had the higher rate of  overall cancellation orders, accounted for over 40% on average.
+  
+
+V.5 Identifying cancelled order volume by customer type
+----
+```sql
+SELECT customer_type,
+ROUND(AVG(discount_percent),1) AS AVG_discount_percent,
+ROUND(AVG(items_count),1) AS AVG_items,
+ROUND(AVG(subtotal),1) AS AVG_subtotal,
+ROUND(AVG(service_fee),1) AS AVG_service_fee,
+ROUND(AVG(delivery_fee),1) AS AVG_delivery_fee,
+ROUND(AVG(tip_amount),1) AS AVG_tip_amount,
+FORMAT(COUNT(order_id),0) AS of_orders
+FROM del
+GROUP BY customer_type
+ORDER BY of_orders DESC;
+```
+![SQL- Cancelled orders by CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-SQL-AVG%20SPENT-CT.png)
+
+***Interpretation***
+- None of significant spent  for   discount reward , total, item, service fee, dan tip amount among customer type,
+  but  premium type with free charged delivery.
+
+V.6 Identifying driver unassigned orders by partner-experieced group
+---
+```sql
+SELECT							
+CASE							
+  WHEN delivery_partner_experience_months >=1 AND delivery_partner_experience_months <=15 THEN 'new'							
+  WHEN delivery_partner_experience_months >=16 AND delivery_partner_experience_months <=30 THEN 'developing'							
+  WHEN delivery_partner_experience_months >=31 AND delivery_partner_experience_months <=45 THEN 'experienced'							
+  WHEN delivery_partner_experience_months >=46 AND delivery_partner_experience_months <=60 THEN							
+  'expert'							
+  END AS partner_exp_group,							
+ 							
+ COUNT(CASE WHEN customer_type = 'New' THEN order_id END) AS new_cst,							
+ COUNT(CASE WHEN customer_type = 'Regular' THEN order_id END) AS regular_cst,							
+ COUNT(CASE WHEN customer_type = 'Premium' THEN order_id END) AS premium_cst,							
+ COUNT(order_id) AS of_orders							
+ FROM del							
+ WHERE 	cancellation_reason = 'Driver Unassigned'						
+ GROUP BY partner_exp_group							
+ ORDER BY of_orders DESC;							
+```
+
+![SQL-Driver unassigned-by CT](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/BQ5-SQL-DU-PEG-CST.png)
+
+***Interpretation***
+- 
 
 
 ### Scope and Boundaries
