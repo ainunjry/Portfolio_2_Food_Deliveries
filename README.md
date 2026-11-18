@@ -973,6 +973,27 @@ It comes to the highest cancelled order volume related partner-experience in mon
 
 ### Key Insight
 
+- Emphasizing  on restaurant food preparation time is crucial in the service quality rate.
+Customer rating of less and more than 4.0 were more relevant to long preparation delays that recorded 2-3 minute difference,	
+and these  rating did not differ significantly to  the restaurant  and partner delivery ratings.	
+The proficient and reliable kitchen management, especially food processing, as well as the number and qualification of chefs.	
+is strongly recommended  to mitigate average restaurant preparation time rate to below 17 minutes, 	
+if  this issue became  unduly  protracted , the cancelled order count due to  long preparation delay would rise.
+
+- Premium customer facilitated with  free charged delivery only, and are not prioritized for restaurant preparation time, 
+it accounted for the high cancelled order volume rate due to long-prepare-delay reasons.
+The restaurant management must  also evaluates late arrival issues with partner management, 
+It is not only partner experience in months has strong relevance, but also how partner management can mitigate the average actual delivery time
+especially  regarding   external factors such as on weekdays as well as during  rush hour or  high traffic periods.
+
+- When It comes to cancelled order volume  due to  driver unassigned reason  after 07.00 p.m. ,  
+partner management must provide dependable framework to reduce late arrivals and cancelled order volume during  the rush hour.
+For instance, providing  alternatively faster alternative routes that avoid traffic congestion, 
+by increasing incentive ,altering  the assignment algorithm system,
+especially for drivers who are  assigned after  07.00 p.m. ,  and allocating a number dedicated drivers under shift system.
+During these hours, many drivers are exhausted and go home
+Hence financial incentives is the right trigger to retain them , regarding natural factors like storm,
+this can be bridged with early  information prior to placing orders.
 
 
 ### Scope and Boundaries
