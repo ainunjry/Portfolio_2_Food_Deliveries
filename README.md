@@ -777,13 +777,15 @@ ORDER BY of_orders DESC;
   with delays occurring much more frequently on weekdays—especially in the Burger and Local restaurant categories.
 
 ****Conclusion****
-- Operational bottlenecks involve multiple factors, including food preparation time as well as estimated and actual delivery times.Partner tenure (in months) also significantly correlated  late delivery rates and unassigned driver incidents.Furthermore, late deliveries occurred nearly 100% more frequently on weekdays compared to weekends.
+- Operational bottlenecks involve multiple factors, including food preparation time as well as estimated and actual delivery times.Partner tenure (in months) also significantly relevant with late delivery rates and unassigned driver incidents.Furthermore, late deliveries occurred nearly 100% more frequently on weekdays compared to weekends.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
 ### Business Question No.5
 
 ****How does delivery performance relate to customer experience?****
+
+Creating group for the partner-experience-in-months for analyzing the relationship between ratings and total cancelled order count.
 
 V.1 Creating bins and labels for delivery_partner_experience_months
 ---
@@ -990,7 +992,7 @@ especially  regarding   external factors such as on weekdays as well as during  
 partner management must provide dependable framework to reduce late arrivals and cancelled order volume during  the rush hour.
 For instance, providing  alternatively faster alternative routes that avoid traffic congestion, 
 by increasing incentive ,altering  the assignment algorithm system,
-especially for drivers who are  assigned after  07.00 p.m. ,  and allocating a number dedicated drivers under shift system.
+especially for drivers who are  assigned after 07.00 p.m. , and allocating a number dedicated drivers under shift system.
 During these hours, many drivers are exhausted and go home
 Hence financial incentives is the right trigger to retain them , regarding natural factors like storm,
 this can be bridged with early  information prior to placing orders.
