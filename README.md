@@ -777,7 +777,7 @@ ORDER BY of_orders DESC;
   with delays occurring much more frequently on weekdays—especially in the Burger and Local restaurant categories.
 
 ****Conclusion****
-- Operational bottlenecks involve multiple factors, including food preparation time as well as estimated and actual delivery times.Partner tenure (in months) also significantly relevant with late delivery rates and unassigned driver incidents.Furthermore, late deliveries occurred nearly 100% more frequently on weekdays compared to weekends.
+- Operational bottlenecks involve multiple factors, including food preparation time as well as estimated and actual delivery times. Partner tenure (in months) also significantly relevant with late delivery rates and unassigned driver incidents during rush hour. Furthermore, late deliveries occurred nearly 100% more frequently on weekdays compared to weekends.
 
 [Back to content](https://github.com/ainunjry/Portfolio_2_Food_Deliveries/blob/main/README.md#content)
 
@@ -785,7 +785,7 @@ ORDER BY of_orders DESC;
 
 ****How does delivery performance relate to customer experience?****
 
-Creating group for the partner-experience-in-months for analyzing the relationship between ratings and total cancelled order count.
+Creating group of the partner-experience-in-months for analyzing the relationship between ratings and total cancelled order count.
 
 V.1 Creating bins and labels for delivery_partner_experience_months
 ---
