@@ -858,7 +858,7 @@ ORDER BY of_orders DESC;
 
 ***Interpretation***
 - None of significant differences that spent by customers for discount reward , total, item, service fee, dan tip amount among customer types,
-  but  premium customers with free charged delivery.
+  but  premium customers with free of charged delivery.
 
 V.7 Identifying driver unassigned orders by partner-experieced group
 ---
@@ -967,7 +967,7 @@ ORDER BY _of_order_w_end DESC;
 
 ***Interpretation***
 - An average of  restaurant preparation time  either on weekend or weekdays was similar,
-conversely , order volume on weekdays accounted for two - three as high than the overall volume on weekend.
+conversely , order volume on weekdays accounted for two - three as high of the overall volume on weekend.
 
 ****Conclusion****
 - Customer rating  is essentially related to restaurant preparation time, moreover, cancelled order volume due to long preparation delay  accounted for the highest preparation and estimated rate.
@@ -982,7 +982,7 @@ The proficient and reliable kitchen management, especially food processing, as w
 is strongly recommended  to mitigate average restaurant preparation time rate to below 17 minutes, 	
 if  this issue became  unduly  protracted , the cancelled order count due to  long preparation delay would rise.
 
-- Premium customer facilitated with  free charged delivery only, and are not prioritized for restaurant preparation time, 
+- Premium customer facilitated with  free of charged delivery only, and are not prioritized for restaurant preparation time, 
 it accounted for the high cancelled order volume rate due to long-prepare-delay reasons.
 The restaurant management must  also evaluates late arrival issues with partner management, 
 It is not only partner experience in months has strong relevance, but also how partner management can mitigate the average actual delivery time
